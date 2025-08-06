@@ -26,37 +26,52 @@
       <p>Days</p>
     </div>
   </div>
-    <audio id="bg-music" autoplay muted loop>
+    <audio id="bg-music" autoplay  loop>
   <source src="audio\WhatsApp Audio 2025-08-06 at 2.51.29 PM.mpeg" type="audio/mpeg" />
   Your browser does not support the audio element.
 </audio>
 <script>
   const music = document.getElementById("bg-music");
 
+  // Attempt to play on first load or return
   window.addEventListener("DOMContentLoaded", () => {
-    const hasPlayed = sessionStorage.getItem("music-played");
-
-    if (!hasPlayed) {
+    // Always try to play
+    const tryPlay = () => {
       music.play().then(() => {
-        sessionStorage.setItem("music-played", "true");
+        console.log("Music playing 🎵");
       }).catch(() => {
-        console.log("Autoplay blocked. Waiting for user interaction.");
+        console.log("Autoplay blocked — waiting for click...");
+        // Show manual play button if needed
+        const btn = document.createElement("button");
+        btn.innerText = "🔊 Tap to Play Music";
+        btn.style.position = "absolute";
+        btn.style.bottom = "20px";
+        btn.style.left = "50%";
+        btn.style.transform = "translateX(-50%)";
+        btn.style.padding = "10px 20px";
+        btn.style.backgroundColor = "#4caf50";
+        btn.style.color = "#fff";
+        btn.style.border = "none";
+        btn.style.borderRadius = "8px";
+        btn.style.zIndex = 9999;
+        btn.onclick = () => {
+          music.play();
+          btn.remove();
+        };
+        document.body.appendChild(btn);
       });
-    } else {
-      music.play().catch(() => {
-        console.log("Autoplay blocked again.");
-      });
-    }
+    };
+
+    tryPlay();
   });
 
-  // Optional: Stop music when leaving dashboard
+  // Stop music when leaving dashboard
   window.addEventListener("beforeunload", () => {
-    if (music) {
-      music.pause();
-      music.currentTime = 0;
-    }
+    music.pause();
+    music.currentTime = 0;
   });
 </script>
+
 </body>
 </html>
 

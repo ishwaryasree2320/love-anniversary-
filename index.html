@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enter Memory</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="lock-screen">
+  <div class="password-container">
+    <h2>Enter the Memory World 💚</h2>
+    <input type="password" id="password" placeholder="Enter password">
+    <button onclick="checkPassword()">Unlock</button>
+    <p id="hint">Hint: The peace day of us</p>
+    <p id="error-msg"></p>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("password").value.trim().toLowerCase();
+      if (input === "18 jan") {
+        window.location.href = "intro.html";
+      } else {
+        document.getElementById("error-msg").innerText = "Wrong password! Try again.";
+      }
+    }
+  </script>
+</body>
+</html>

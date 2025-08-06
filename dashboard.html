@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard">
+  <h2 class="handwritten"> it's your time to Choose your chapter of love</h2>
+  <div class="dashboard-grid">
+    <div onclick="location.href='year.html'" class="dashboard-item">
+      <img src="images\WhatsApp Image 2025-08-05 at 10.27.05 PM.jpeg" alt="Year">
+      <p>Year</p>
+    </div>
+    <div onclick="location.href='months.html'" class="dashboard-item">
+      <img src="images\WhatsApp Image 2025-08-05 at 10.23.59 PM.jpeg" alt="Months">
+      <p>Months</p>
+    </div>
+    <div onclick="location.href='weeks.html'" class="dashboard-item">
+      <img src="images\WhatsApp Image 2025-08-05 at 10.44.19 PM.jpeg" alt="Weeks">
+      <p>Weeks</p>
+    </div>
+    <div onclick="location.href='days.html'" class="dashboard-item">
+      <img src="images\WhatsApp Image 2025-08-05 at 8.34.02 PM.jpeg" alt="Days">
+      <p>Days</p>
+    </div>
+  </div>
+    <audio id="bg-music" autoplay muted loop>
+  <source src="audio\WhatsApp Audio 2025-08-06 at 2.51.29 PM.mpeg" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+<script>
+  const music = document.getElementById("bg-music");
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const hasPlayed = sessionStorage.getItem("music-played");
+
+    if (!hasPlayed) {
+      music.play().then(() => {
+        sessionStorage.setItem("music-played", "true");
+      }).catch(() => {
+        console.log("Autoplay blocked. Waiting for user interaction.");
+      });
+    } else {
+      music.play().catch(() => {
+        console.log("Autoplay blocked again.");
+      });
+    }
+  });
+
+  // Optional: Stop music when leaving dashboard
+  window.addEventListener("beforeunload", () => {
+    if (music) {
+      music.pause();
+      music.currentTime = 0;
+    }
+  });
+</script>
+</body>
+</html>
+

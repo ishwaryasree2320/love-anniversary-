@@ -1,0 +1,212 @@
+/* ============ Base ============ */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #e6f7ec;
+  color: #2f5233;
+  text-align: center;
+}
+
+.lock-screen, .intro-screen, .dashboard, .gallery-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.handwritten {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2em;
+  margin-bottom: 1em;
+  color: #2e7d32;
+}
+
+button,
+.password-container button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.password-container input {
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 1em;
+}
+
+/* ============ Dashboard ============ */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 30px;
+}
+
+.dashboard-item {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.dashboard-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.dashboard-item p {
+  margin: 0;
+  padding: 10px;
+  background-color: #a5d6a7;
+  font-weight: bold;
+}
+
+.dashboard-item:hover {
+  transform: scale(1.05);
+}
+
+/* ============ Photo Gallery Card ============ */
+.photo-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  width: 140px;
+  height: 180px;
+  perspective: 1000px;
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.card:hover img {
+  transform: rotateY(20deg) scale(1.05);
+}
+
+/* ============ Circular Carousel (Top-down) ============ */
+.carousel-wrapper {
+  perspective: 1000px;
+  width: 100vw;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+.carousel3d {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  transform-style: preserve-3d;
+  animation: spin 20s infinite linear;
+}
+
+.carousel-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+@keyframes spin {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+/* ============ Horizontal Cylinder Carousel ============ */
+.carousel-container {
+  perspective: 1500px;
+  width: 100vw;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.carousel {
+  width: 300px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotateY 20s linear infinite;
+}
+
+.carousel-item {
+  position: absolute;
+  width: 140px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+@keyframes rotateY {
+  0%   { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+/* ============ Modal (shared) ============ */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #1a3f2a;
+}
+
+/* ============ Footer ============ */
+.footer-love {
+  margin-top: 40px;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #1b5e20;
+}
